@@ -7,10 +7,11 @@ RUN zypper -n install -t pattern devel_C_C++
 RUN zypper -n install clang llvm-clang-devel llvm-devel cmake python-testtools python-pip wget
 
 #install kernel headers 4.4 x64
-RUN zypper -n install kernel-devel && zypper -n install kernel && ls -l /lib/modules
+RUN zypper -n install kernel-devel kernel-vanilla-devel && zypper -n install kernel && ls -l /lib/modules
 
 #install build essential for project
-RUN zypper -n in gcc-c++ && wget http://nixos.org/releases/patchelf/patchelf-0.8/patchelf-0.8.tar.gz && tar xf patchelf-0.8.tar.gz && patchelf-0.8/configure && make install && rm -rf patchelf-0.8 && rm -f patchelf-0.8.tar.gz
+RUN zypper -n in gcc-c++ && wget http://nixos.org/releases/patchelf/patchelf-0.8/patchelf-0.8.tar.gz && \
+tar xf patchelf-0.8.tar.gz && patchelf-0.8/configure && make install && rm -rf patchelf-0.8 && rm -f patchelf-0.8.tar.gz
 RUN zypper -n dup
 RUN zypper -n si -d qemu-kvm
 RUN zypper -n install libelf-devel
