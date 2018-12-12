@@ -2,4 +2,4 @@
 FROM opensuse:42.3
 MAINTAINER Sergii Kusii <kusii.sergii@apriorit.com>
 
-RUN zypper -n update && zypper clean --all
+RUN   zypper -n in -n kernel-default-4.4.120-45.1
